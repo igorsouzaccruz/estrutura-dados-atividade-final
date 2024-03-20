@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ClienteService } from '../cliente.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -29,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class CadastroComponent {
   formulario!: FormGroup;
   formBuilder = inject(FormBuilder);
+  service = inject(ClienteService);
 
   ngOnInit(): void {
     this.criarFormulario();
@@ -40,6 +42,15 @@ export class CadastroComponent {
       cpf: ['', [Validators.required]],
       celular: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
+    });
+  }
+  public salvar() {
+    this.service.salvar(this.formulario.value).subscribe({
+      next: (respota) => console.log(respota),
+      error: (erro) => console.log('error'),
+      complete: () => {
+        console.log('fim');
+      },
     });
   }
 
