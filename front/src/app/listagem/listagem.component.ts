@@ -6,6 +6,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -19,6 +20,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
     MatInputModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatButtonModule,
   ],
   templateUrl: './listagem.component.html',
   styleUrl: './listagem.component.scss',
@@ -68,6 +70,8 @@ export class ListagemComponent implements OnInit {
   ];
 
   mostrarColunasDinamicas = ['id', 'nome', 'cpf', 'celular', 'email'];
+
+  public buscarPorCpf() {}
 }
 
 export interface IColunas {

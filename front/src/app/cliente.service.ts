@@ -7,7 +7,7 @@ import { take } from 'rxjs';
   providedIn: 'root',
 })
 export class ClienteService {
-  private url = 'http://localhost:8080/';
+  private url = 'http://localhost:8080/clientes';
 
   constructor(private http: HttpClient) {}
 

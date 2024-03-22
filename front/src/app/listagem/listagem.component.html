@@ -11,6 +11,8 @@
       </mat-form-field>
     </form>
 
+    <button mat-raised-button color="primary" (click)="buscarPorCpf()">Buscar por Cpf</button>
+
     <table mat-table [dataSource]="fonteDados">
       @for (coluna of colunas; track coluna) {
       <ng-container [matColumnDef]="coluna.def">
