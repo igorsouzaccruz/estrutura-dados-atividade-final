@@ -29,4 +29,10 @@ A proposta apresentada era desenvolver uma aplicação que busca salva, lista e 
 
   - Back com Java 21 e Spring 3.2.4
   - Front com Angular 17 e Angular material
+  - Node v20.11.1
   - Banco de dados H2.
+
+
+Para rodar o projeto:
+- npm install
+- ngx ngs
