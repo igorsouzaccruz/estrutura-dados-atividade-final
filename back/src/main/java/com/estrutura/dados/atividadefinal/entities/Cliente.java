@@ -19,12 +19,17 @@ public class Cliente implements Serializable {
 	private Long id;
 	private String nome;
 	private String cpf;
+	private String email;
+	private String celular;
 	
-	public Cliente(Long id, String nome, String cpf) {
+
+	public Cliente(Long id, String nome, String cpf, String email, String celular) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
+		this.email = email;
+		this.celular = celular;
 	}
 
 	public Cliente() {
@@ -70,5 +75,22 @@ public class Cliente implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 }

@@ -24,9 +24,9 @@ public class AtividadeFinalApplication implements CommandLineRunner {
 	@Override
     public void run(String... args) throws Exception {
 		
-		Cliente cliente1 = new Cliente(null, "Lucas", "251.257.590-07");
-		Cliente cliente2 = new Cliente(null, "Igor", "806.087.920-04");
-		Cliente cliente3 = new Cliente(null, "Moacir", "986.431.280-40");
+		Cliente cliente1 = new Cliente(null, "Lucas", "251.257.590-07","igor@gmail.com" , "85999999999");
+		Cliente cliente2 = new Cliente(null, "Igor", "806.087.920-04","lucas@gmail.com" , "85999999999");
+		Cliente cliente3 = new Cliente(null, "Moacir", "986.431.280-40","moacir@gmail.com" , "85999999999");
 
 		clienterepository.saveAll(Arrays.asList(cliente1, cliente2, cliente3));
 

@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { ClienteService } from '../cliente.service';
 
 @Component({
   selector: 'app-listagem',
@@ -28,9 +29,15 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 export class ListagemComponent implements OnInit {
   formulario!: FormGroup;
   formBuilder = inject(FormBuilder);
+  service = inject(ClienteService);
+
+  public clientes: Array<Cliente> = [];
+
+  public fonteDados = new MatTableDataSource<Cliente>();
 
   ngOnInit(): void {
     this.criarFormulario();
+    this.pesquisar();
   }
 
   private criarFormulario(): void {
@@ -39,7 +46,10 @@ export class ListagemComponent implements OnInit {
     });
   }
 
-  public fonteDados = new MatTableDataSource<Cliente>();
+  public limparFormulario(): void {
+    this.formulario.reset();
+    this.pesquisar();
+  }
 
   public colunas: Array<IColunas> = [
     {
@@ -69,16 +79,30 @@ export class ListagemComponent implements OnInit {
     },
   ];
 
-  mostrarColunasDinamicas = ['id', 'nome', 'cpf', 'celular', 'email'];
+  mostrarColunasDinamicas = this.colunas.map((coluna) => coluna.def);
 
-  public buscarPorCpf() {}
+  public pesquisar() {
+    if (this.formulario.get('cpf')?.value != '') {
+      this.buscarPorCpf();
+    } else {
+      this.service.buscar().subscribe((resultado) => {
+        this.fonteDados.data = resultado;
+      });
+    }
+  }
+
+  public buscarPorCpf() {
+    this.service
+      .buscarPorCpf(this.formulario.get('cpf')?.value)
+      .subscribe((resultado) => {
+        this.fonteDados.data = [resultado];
+      });
+  }
 }
 
 export interface IColunas {
   def: string;
-
   cabecalho: string;
-
   conteudo: any;
 }
 

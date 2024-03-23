@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Cliente } from './listagem/listagem.component';
-import { take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,15 +15,11 @@ export class ClienteService {
     return this.http.post<Cliente>(this.url, cliente);
   }
 
-  public buscarPorCpf(cpf: string) {
-    let parametrosHttp = new HttpParams();
+  public buscarPorCpf(cpf: string): Observable<any> {
+    return this.http.get<any>(this.url + '/' + cpf).pipe(take(1));
+  }
 
-    parametrosHttp = parametrosHttp.append('cpf', cpf);
-
-    return this.http
-      .get<Cliente>(this.url, {
-        params: parametrosHttp,
-      })
-      .pipe(take(1));
+  public buscar(): Observable<any> {
+    return this.http.get<any>(this.url);
   }
 }

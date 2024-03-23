@@ -30,7 +30,7 @@ import { ClienteService } from '../cliente.service';
 export class CadastroComponent {
   formulario!: FormGroup;
   formBuilder = inject(FormBuilder);
-  // service = inject(ClienteService);
+  service = inject(ClienteService);
 
   ngOnInit(): void {
     this.criarFormulario();
@@ -45,13 +45,13 @@ export class CadastroComponent {
     });
   }
   public salvar() {
-    // this.service.salvar(this.formulario.value).subscribe({
-    //   next: (respota) => console.log(respota),
-    //   error: (erro) => console.log('error'),
-    //   complete: () => {
-    //     console.log('fim');
-    //   },
-    // });
+    this.service.salvar(this.formulario.value).subscribe({
+      next: (respota) => console.log(respota),
+      error: (erro) => console.log('error'),
+      complete: () => {
+        console.log('fim');
+      },
+    });
   }
 
   public limparFormulario(): void {
