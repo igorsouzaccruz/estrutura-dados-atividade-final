@@ -82,13 +82,9 @@ export class ListagemComponent implements OnInit {
   mostrarColunasDinamicas = this.colunas.map((coluna) => coluna.def);
 
   public pesquisar() {
-    if (this.formulario.get('cpf')?.value != '') {
-      this.buscarPorCpf();
-    } else {
-      this.service.buscar().subscribe((resultado) => {
-        this.fonteDados.data = resultado;
-      });
-    }
+    this.service.buscar().subscribe((resultado) => {
+      this.fonteDados.data = resultado;
+    });
   }
 
   public buscarPorCpf() {

@@ -52,6 +52,7 @@ export class CadastroComponent {
         console.log('fim');
       },
     });
+    this.limparFormulario();
   }
 
   public limparFormulario(): void {
